@@ -20,10 +20,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    id = models.BigAutoField(primary_key=True)
+    id = models.BigAutoField('id', primary_key=True)
     username = models.CharField("Username", max_length=50)
     password = models.CharField('Password', max_length=50)
-    email = models.EmailField('Email', max_length=50)
+    email = models.EmailField('Email', max_length=50, unique=True)
     first_name = models.CharField('first_name', max_length=50)
     last_name = models.CharField('last_name', max_length=50)
     profile_pic = models.ImageField('profile_pic', max_length=50, default='default.jpg',
