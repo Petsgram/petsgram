@@ -27,5 +27,6 @@ urlpatterns = [
     path('verifyToken/', views.VerifyTokenView.as_view()),
     
     path('user/<int:pk>/', views.UserDetailView.as_view()),
+    path('user/create/', views.UserCreateAPIView.as_view()),
     path('admin/', admin.site.urls),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

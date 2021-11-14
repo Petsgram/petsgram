@@ -1,6 +1,9 @@
+import os
+from re import I
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractBaseUser
 from django.db import models
+from uuid import uuid4
 
 
 class UserManager(BaseUserManager):
@@ -20,14 +23,27 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    def get_name_to_pic(path):
+        def create_path(instance, filename):
+            ext = filename.split('.')[-1]
+            # get filename
+            if instance.id:
+                filename = '{}.{}'.format(instance.id, ext)
+            else:
+                # set filename as random string
+                filename = '{}.{}'.format(uuid4().hex, ext)
+            # return the whole path to the file
+            return os.path.join(path, filename)
+        return create_path
+
     id = models.BigAutoField('id', primary_key=True)
     username = models.CharField("Username", max_length=50)
-    password = models.CharField('Password', max_length=50)
+    password = models.CharField('Password', max_length=128)
     email = models.EmailField('Email', max_length=50, unique=True)
     first_name = models.CharField('first_name', max_length=50)
     last_name = models.CharField('last_name', max_length=50)
-    profile_pic = models.ImageField('profile_pic', max_length=50, default='default.jpg',
-                                    upload_to='profile_pics/%Y/%m/%d/')
+    profile_pic = models.ImageField('profile_pic', default='default.jpg',
+                                    upload_to=get_name_to_pic(path='profile_pics/'), blank=True)
     birth_date = models.DateField('birth_date')
 
     def save(self, **kwargs):
