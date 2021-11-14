@@ -85,7 +85,7 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
     'USER_ID_FIELD': 'id',
-    'uSER_ID_CLAIM': 'user_id',
+    'USER_ID_CLAIM': 'user_id',
 }
 
 WSGI_APPLICATION = 'msAuthProject.wsgi.application'
