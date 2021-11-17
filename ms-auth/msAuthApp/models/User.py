@@ -1,9 +1,9 @@
 import os
-from re import I
+from uuid import uuid4
+
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractBaseUser
 from django.db import models
-from uuid import uuid4
 
 
 class UserManager(BaseUserManager):
