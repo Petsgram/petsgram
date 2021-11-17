@@ -7,6 +7,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 # Imported user serializer
 from msAuthApp.serializers import UserSerializer
 
+
 # CreateAPIView (method: POST)
 # This method allows craete a user
 
