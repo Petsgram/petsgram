@@ -26,12 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_name_to_pic(path):
         def create_path(instance, filename):
             ext = filename.split('.')[-1]
-            # get filename
-            if instance.id:
-                filename = '{}.{}'.format(instance.id, ext)
-            else:
-                # set filename as random string
-                filename = '{}.{}'.format(uuid4().hex, ext)
+            filename = '{}.{}'.format(uuid4().hex, ext)
             # return the whole path to the file
             return os.path.join(path, filename)
         return create_path
