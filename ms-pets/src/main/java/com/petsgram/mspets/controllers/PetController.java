@@ -1,10 +1,9 @@
 package com.petsgram.mspets.controllers;
 
+import com.petsgram.mspets.exceptions.PetNotfoundException;
 import com.petsgram.mspets.models.Pet;
 import com.petsgram.mspets.repositories.PetRepository;
-import com.petsgram.mspets.services.PetService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,19 +24,14 @@ public class PetController {
         return petRepository.save(pet);
     }
 
-    @Autowired
-    private PetService petService;
-
     @DeleteMapping("/pets/{username}")
     public String deletePet(@PathVariable String username){
-        Pet pet = petService.findByUsername(username);
-
+        Pet pet = petRepository.findById(username).orElse(null);;
         if(pet == null){
-            throw new RuntimeException("Mascota no encontrada");
+            throw new PetNotfoundException("Mascota no encontrada con el username: " + username);
         }
-
-        petService.deletePet(username);
-
-        return "Mascota eliminada";
+        petRepository.delete(pet);
+        
+        return "La mascota se ha eliminado";
     }
 }
