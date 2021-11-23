@@ -4,18 +4,14 @@ import com.petsgram.mspets.exceptions.PetNotfoundException;
 import com.petsgram.mspets.models.Pet;
 import com.petsgram.mspets.repositories.PetRepository;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PetController {
     private final PetRepository petRepository;
 
     public PetController(PetRepository petRepository) {
-        super();
         this.petRepository = petRepository;
     }
 
@@ -34,4 +30,9 @@ public class PetController {
         
         return "La mascota se ha eliminado";
     }
+    @PutMapping("/pets")
+    Pet updatePet(@RequestBody Pet pet) {
+        return petRepository.save(pet);
+    }
+
 }
