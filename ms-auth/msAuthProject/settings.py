@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rb^is2ba%f1^t$law+ryrg8k520*5+yvbs!w8cblpsd9ws6q=7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "petsgram-auth.herokuapp.com"
+]
 
 # Application definition
 
