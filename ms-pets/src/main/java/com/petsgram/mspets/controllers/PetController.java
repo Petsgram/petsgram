@@ -35,4 +35,20 @@ public class PetController {
         return petRepository.save(pet);
     }
 
+    @GetMapping("/pets/{username}")
+    public Pet getPet(@PathVariable String username){
+        Pet pet = petRepository.findById(username).orElse(null);
+
+        if (pet == null){
+            throw new PetNotfoundException("Mascota no encontrada");
+        }
+        return pet;
+       
+
+    }
+
+
+
+    
+
 }
