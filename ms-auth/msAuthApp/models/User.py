@@ -37,7 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('first_name', max_length=50)
     last_name = models.CharField('last_name', max_length=50)
     profile_pic = models.ImageField('profile_pic', default='default.jpg',
-                                    upload_to="get_name_to_pic(path='profile_pics/')", blank=True)
+                                    upload_to=get_name_to_pic(path='profile_pics/'), blank=True)
     birth_date = models.DateField('birth_date')
 
     def save(self, **kwargs):
