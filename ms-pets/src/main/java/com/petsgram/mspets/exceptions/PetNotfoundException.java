@@ -1,7 +1,9 @@
 package com.petsgram.mspets.exceptions;
 
-public class PetNotfoundException extends RuntimeException{
-    public PetNotfoundException(String message) {
+public class PetNotFoundException extends RuntimeException{
+    public PetNotFoundException(String message) {
         super(message);        
     }
 }
+
+
