@@ -1,10 +1,6 @@
 package com.petsgram.mspets.models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 public class Pet {
 
