@@ -2,6 +2,7 @@ package com.petsgram.mspets.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Pet {
@@ -10,11 +11,12 @@ public class Pet {
     private String username;
     private String name;
     private PetType type;
-    private Date birthdate;
+    private LocalDate birthdate;
     private String breed;
     private String usernameOwner;
+    private String image;
 
-    public Pet(String username, String name, PetType type, Date birthdate, String breed, String usernameOwner) {
+    public Pet(String username, String name, PetType type, LocalDate birthdate, String breed, String usernameOwner) {
         this.username = username;
         this.name = name;
         this.type = type;
@@ -47,12 +49,12 @@ public class Pet {
         this.type = type;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = LocalDate.parse(birthdate);
     }
 
     public String getBreed() {
