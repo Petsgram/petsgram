@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 @ResponseBody
-public class PetNotfoundAdvice {
+public class PetNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(PetNotfoundException.class)
+    @ExceptionHandler(PetNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String EntityNotFoundAdvice(PetNotfoundException ex){
+    String EntityNotFoundAdvice(PetNotFoundException ex){
         return ex.getMessage();
     }
 }
