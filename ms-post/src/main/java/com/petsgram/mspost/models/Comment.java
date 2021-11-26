@@ -1,8 +1,11 @@
 package com.petsgram.mspost.models;
 
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDateTime;
 
 public class Comment {
+    @Id
     private String id;
     private String id_user;
     private String id_post;
