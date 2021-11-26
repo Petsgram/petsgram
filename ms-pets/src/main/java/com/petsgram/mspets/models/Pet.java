@@ -1,7 +1,9 @@
 package com.petsgram.mspets.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Pet {
@@ -10,17 +12,19 @@ public class Pet {
     private String username;
     private String name;
     private PetType type;
-    private Date birthdate;
+    private String birthdate;
     private String breed;
     private String usernameOwner;
+    private String image;
 
-    public Pet(String username, String name, PetType type, Date birthdate, String breed, String usernameOwner) {
+    public Pet(String username, String name, PetType type, String birthdate, String breed, String usernameOwner, String image) {
         this.username = username;
         this.name = name;
         this.type = type;
         this.birthdate = birthdate;
         this.breed = breed;
         this.usernameOwner = usernameOwner;
+        this.image = image;
     }
 
     public String getUsername() {
@@ -47,11 +51,11 @@ public class Pet {
         this.type = type;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -69,5 +73,13 @@ public class Pet {
 
     public void setUsernameOwner(String usernameOwner) {
         this.usernameOwner = usernameOwner;
+    }
+
+    public void setImage(String fileName) {
+        this.image = fileName;
+    }
+
+    public String getImage() {
+        return image;
     }
 }
