@@ -1,9 +1,12 @@
 package com.petsgram.mspost.models;
 
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Post {
+    @Id
     private String id;
     private String username;
     private String description;
@@ -12,13 +15,13 @@ public class Post {
     private List<Like> likes;
     private List<Comment> comments;
 
-    public Post(String id, String username, String description, LocalDateTime date, Image images,
+    public Post(String id, String username, String description, LocalDateTime date, Image image,
                 List<Like> likes, List<Comment> comments) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.date = date;
-        this.image = images;
+        this.image = image;
         this.likes = likes;
         this.comments = comments;
     }
@@ -77,5 +80,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public void addLike(Like like) {
+        likes.add(like);
+    }
+
+    public void removeLike(Like likeSaved) {
+        likes.removeIf(e -> e.getId().equals(likeSaved.getId()));
     }
 }
