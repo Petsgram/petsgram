@@ -7,14 +7,12 @@ import com.petsgram.mspost.models.Like;
 import com.petsgram.mspost.models.Post;
 import com.petsgram.mspost.repositories.LikeRepository;
 import com.petsgram.mspost.repositories.PostRepository;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class LikeController {
