@@ -15,6 +15,16 @@ public class Post {
     private List<Like> likes;
     private List<Comment> comments;
 
+    public Post() {
+        id = null;
+        username = null;
+        description = null;
+        date = LocalDateTime.now();
+        image = null;
+        likes = null;
+        comments = null;
+    }
+
     public Post(String id, String username, String description, LocalDateTime date, Image image,
                 List<Like> likes, List<Comment> comments) {
         this.id = id;
