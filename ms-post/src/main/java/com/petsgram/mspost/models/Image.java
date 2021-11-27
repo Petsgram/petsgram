@@ -1,12 +1,15 @@
 package com.petsgram.mspost.models;
 
+import java.util.UUID;
+
 public class Image {
     private String url;
-    private String name;
 
-    public Image(String url, String name) {
+    private String id;
+
+    public Image(String url) {
         this.url = url;
-        this.name = name;
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getUrl() {
@@ -17,12 +20,12 @@ public class Image {
         this.url = url;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
