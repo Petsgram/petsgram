@@ -11,22 +11,38 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
+/**
+ * Utility class for file uploads
+ * @author criiscz
+ */
 public class FileUploadUtil {
-    public static String saveFile(String uploadDir,String fileName, MultipartFile image) throws IOException {
+
+    /**
+     * Method to upload image to server.
+     * @param uploadDir Path to upload directory.
+     * @param fileName Name of the file.
+     * @param image MultipartFile.
+     * @return Path of the uploaded file.
+     * @throws IOException If there is an error while uploading the file.
+     */
+    public static String saveFile(String uploadDir, String fileName, MultipartFile image) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
-
         String ext = fileName.substring(fileName.lastIndexOf("."));
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
+        if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
+        Path filePath = uploadPath.resolve(UUID.randomUUID() + ext);
+        return saveImage(image, filePath);
+    }
 
-        try (InputStream inputStream = image.getInputStream()) {
-            Path filePath = uploadPath.resolve(UUID.randomUUID() + ext);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println(filePath);
-            return filePath.toString();
-        } catch (IOException ioe) {
-            throw new IOException("Could not save image file: " + fileName, ioe);
-        }
+    /**
+     * Method to save image to server.
+     * @param image Image to save.
+     * @param filePath Path to save image.
+     * @return Path of the saved image.
+     * @throws IOException If there is an error while saving the image.
+     */
+    private static String saveImage(MultipartFile image, Path filePath) throws IOException {
+        InputStream inputStream = image.getInputStream();
+        Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        return filePath.toString();
     }
 }
