@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -78,6 +79,16 @@ public class PostController {
     @GetMapping("/posts")
     public ResponseEntity<Iterable<Post>> getAllPosts() {
         return new ResponseEntity<>(postRepository.findByOrderByDateDesc(), HttpStatus.OK);
+    }
+
+    /**
+     * Method to get all posts from a pet.
+     * @return Response HTTP with all posts from a pet.
+     */
+    @GetMapping("/posts/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Post> getAllPostsPet(@PathVariable String username) {
+        return postRepository.findByUsername(username);
     }
 }
 
