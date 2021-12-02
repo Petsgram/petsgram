@@ -14,6 +14,7 @@ public class Post {
     private Image image;
     private List<Like> likes;
     private List<Comment> comments;
+   
 
     public Post() {
         id = null;
@@ -23,6 +24,7 @@ public class Post {
         image = null;
         likes = null;
         comments = null;
+        
     }
 
     public Post(String id, String username, String description, LocalDateTime date, Image image,
@@ -99,4 +101,13 @@ public class Post {
     public void removeLike(Like likeSaved) {
         likes.removeIf(e -> e.getId().equals(likeSaved.getId()));
     }
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
+    public void removeComment(Comment commentSaved) {
+        comments.removeIf(comment -> comment.getId().equals(commentSaved.getId()));
+    }
+
+    
 }
