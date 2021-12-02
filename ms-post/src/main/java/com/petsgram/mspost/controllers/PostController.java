@@ -90,5 +90,16 @@ public class PostController {
     public List<Post> getAllPostsPet(@PathVariable String username) {
         return postRepository.findByUsername(username);
     }
+
+    /**
+     * Method to delete a post
+     * @param post Post to be deleted
+     * @return Response HTTP with the post deleted.
+     */
+    @DeleteMapping(value = "/posts", consumes = "application/json")
+    public ResponseEntity<String> deletePost(@RequestBody Post post) {
+        postRepository.delete(post);
+        return ResponseEntity<String>("Eliminado", HttpStatus.DELETED)   
+    }
 }
 
