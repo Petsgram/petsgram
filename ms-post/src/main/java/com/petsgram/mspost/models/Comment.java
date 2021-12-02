@@ -10,6 +10,9 @@ public class Comment {
     private String id_user;
     private String id_post;
     private String comment;
+    private LocalDateTime date;
+
+   
 
     public String getId() {
         return id;
@@ -51,5 +54,4 @@ public class Comment {
         this.date = date;
     }
 
-    private LocalDateTime date;
 }

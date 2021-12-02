@@ -10,6 +10,7 @@ public class Like {
     private String postId;
     private String petId;
     private LocalDateTime like_date;
+   
 
 
     public Like(String id, String postId, String petId, LocalDateTime like_date) {
@@ -17,6 +18,7 @@ public class Like {
         this.postId = postId;
         this.petId = petId;
         this.like_date = like_date;
+        
     }
 
 
@@ -51,4 +53,6 @@ public class Like {
     public void setLike_date(LocalDateTime like_date) {
         this.like_date = like_date;
     }
+
+    
 }
