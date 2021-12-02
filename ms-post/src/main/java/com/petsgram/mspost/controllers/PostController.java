@@ -1,6 +1,7 @@
 package com.petsgram.mspost.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petsgram.mspost.exceptions.PostNotFoundException;
 import com.petsgram.mspost.models.Image;
 import com.petsgram.mspost.models.Post;
 import com.petsgram.mspost.repositories.PostRepository;
@@ -30,8 +31,9 @@ public class PostController {
 
     /**
      * Method to create a new post with image.
+     *
      * @param postJson Post serialized in JSON to be created.
-     * @param image Image from the post to be created.
+     * @param image    Image from the post to be created.
      * @return Response HTTP with the post created.
      * @throws IOException If the post cannot be created.
      */
@@ -47,7 +49,8 @@ public class PostController {
 
     /**
      * Method to save the post image and return the post with the image saved.
-     * @param image image to be saved
+     *
+     * @param image     image to be saved
      * @param postSaved post to be saved
      * @return post with the image saved.
      * @throws IOException if the image cannot be saved
@@ -63,6 +66,7 @@ public class PostController {
 
     /**
      * Method to create a new post without image
+     *
      * @param post Post to be created
      * @return Response HTTP with the post created.
      */
@@ -74,6 +78,7 @@ public class PostController {
 
     /**
      * Method to get all posts ordered by date.
+     *
      * @return Response HTTP with all posts ordered by date.
      */
     @GetMapping("/posts")
@@ -83,23 +88,38 @@ public class PostController {
 
     /**
      * Method to get all posts from a pet.
+     *
      * @return Response HTTP with all posts from a pet.
      */
     @GetMapping("/posts/{username}")
     @ResponseStatus(HttpStatus.OK)
     public List<Post> getAllPostsPet(@PathVariable String username) {
-        return postRepository.findByUsername(username);
+        return postRepository.findByUsernameOrderByDateDesc(username);
     }
 
     /**
      * Method to delete a post
-     * @param post Post to be deleted
+     *
+     * @param post PostId to be deleted
      * @return Response HTTP with the post deleted.
      */
-    @DeleteMapping(value = "/posts", consumes = "application/json")
+    @DeleteMapping("/posts")
     public ResponseEntity<String> deletePost(@RequestBody Post post) {
         postRepository.delete(post);
-        return ResponseEntity<String>("Eliminado", HttpStatus.DELETED)   
+        return new ResponseEntity<>("Eliminado", HttpStatus.OK);
+    }
+
+    /**
+     * Method to get a post
+     *
+     * @param id id of the post to be searched
+     * @return Response HTTP with the post.
+     */
+    @GetMapping("/posts/id/{id}")
+    public ResponseEntity<Post> getPost(@PathVariable String id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) throw new PostNotFoundException("Post not found");
+        return new ResponseEntity<>(post, HttpStatus.OK);
     }
 }
 
