@@ -4,26 +4,26 @@ const auth_type_defs = gql`
     refresh:String!
     access:String!
   }
-  
+
   input Access {
     access:String!
   }
-  
+
   input Credentials {
     email:String!
     password:String!
   }
-  
-  input Signup {
+
+  input UserInput {
     username:String!
     password:String!
     email:String!
     first_name:String!
     last_name:String!
-    profile_pic:String!
+    profile_pic:String
     birth_date:String!
   }
-  
+
   type User {
     id:Int!
     username:String!
@@ -33,17 +33,18 @@ const auth_type_defs = gql`
     profile_pic:String!
     birth_date:String!
   }
-  
+
   type Query {
-    userById(id:Int!):User!
+    getUser(id:Int!):User!
   }
-  
+
   type Mutation {
-    signup(signup:Signup):Tokens!
-    login(credentials:Credentials):Tokens!
-    refresh(refresh:Access!):Tokens!
+    createUser(signup:UserInput!):Tokens!
+    login(credentials:Credentials!):Tokens!
+    refreshToken(refresh:Access!):Tokens!
+    updateUser(update:UserInput!):User!
   }
-  
+
 `;
 
 module.exports = auth_type_defs;
