@@ -25,7 +25,6 @@ const auth_type_defs = gql`
   }
 
   type User {
-    id:Int!
     username:String!
     email:String!
     first_name:String!

@@ -23,7 +23,10 @@ class AuthAPI extends RESTDataSource {
   }
 
   async getUser(id) {
-    return await this.get(`/user/${id}`);
+    console.log("aqui: " + id)
+    const res =  await this.get(`/user/${id}`);
+    console.log(res);
+    return res;
   }
 
   async updateUser(user) {

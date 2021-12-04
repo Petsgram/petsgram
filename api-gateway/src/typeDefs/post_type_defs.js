@@ -24,7 +24,7 @@ const post_type_defs = gql`
 
   extend type Query {
     getPosts: [Post]
-    getPostByUsername(username: String!): Post!
+    getPostByUsername(username: String!): [Post]!
     getPostById(id: String!): Post
   }
 

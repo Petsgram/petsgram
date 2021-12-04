@@ -1,6 +1,6 @@
 const usersResolver = {
   Query: {
-    getUser: async (_, {userId}, {dataSources}) => await dataSources.authAPI.getUser(userId)
+    getUser: async (_, {id}, {dataSources}) => await dataSources.authAPI.getUser(id)
   },
   Mutation: {
     createUser: async (_, {userInput}, {dataSources}) => await dataSources.authAPI.createUser(userInput),

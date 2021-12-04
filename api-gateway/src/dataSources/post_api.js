@@ -24,7 +24,10 @@ class PostAPI extends RESTDataSource {
   }
 
   async getPostByUsername(username) {
-    return await this.get(`/posts/${username}`);
+    const res =  await this.get(`/posts/${username}`);
+    console.log("aqui")
+    console.log(res);
+    return res
   }
 
   async getPostById(id) {
