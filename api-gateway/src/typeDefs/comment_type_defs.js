@@ -4,16 +4,16 @@ const comment_type_defs = gql`
   type Comment {
     id: String!
     comment: String!
-    user: User!
+    pet: Pet!
     post: Post!
   }
 
   input CommentInput {
     comment: String!
-    post: String!
-    user: String!
+    id_post: String!
+    id_user: String!
   }
-  
+
   extend type Mutation {
     addComment(input: CommentInput!): Comment!
   }

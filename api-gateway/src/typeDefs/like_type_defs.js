@@ -3,18 +3,19 @@ const {gql} = require('apollo-server');
 const like_type_defs = gql`
   type Like {
     id: ID!
-    user: User!
+    pet: Pet!
     post: Post!
+    date:String!
   }
 
   input LikeInput {
-    user: ID!
-    post: ID!
+    petId: ID!
+    postId: ID!
   }
 
   extend type Mutation {
     addLike(input: LikeInput!): Like!
-    removeLike(id: LikeInput): String!
+    removeLike(id: LikeInput): Like!
   }
     
 `;

@@ -31,7 +31,6 @@ const post_type_defs = gql`
   extend type Mutation {
     createPostJSON(postInput: PostInput): Post
     createPostImage(postWithImageInput: PostWithImageInput): Post
-    deletePost(id: String!): Post
   }
 
 `;
