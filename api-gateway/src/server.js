@@ -108,7 +108,8 @@ module.exports = {
 *
 * POST  /posts/comment                     [application/json]  {
 *                                                               "id_post":"",
-*                                                               "id_user":""
+*                                                               "id_user":"",
+*                                                               "comment":""
 *                                                               }
 *
 */
