@@ -30,7 +30,7 @@ const pet_type_defs = gql`
   extend type Mutation {
     addPet(pet: PetInput!): Pet
     updatePet(pet: PetInput!): Pet
-    deletePet(username: String!): Boolean
+    deletePet(username: String!): String
   }
   
 `;

@@ -1,12 +1,12 @@
 const usersResolver = {
   Query: {
-    getUser: async (_, {userId}, {dataSources}) => await dataSources.authAPI.getUser(userId)
+    getUser: async (_, {id}, {dataSources}) => await dataSources.authAPI.getUser(id)
   },
   Mutation: {
-    createUser: async (_, {userInput}, {dataSources}) => await dataSources.authAPI.createUser(userInput),
+    createUser: async (_, {signup}, {dataSources}) => await dataSources.authAPI.createUser(signup),
     login: async (_, {credentials}, {dataSources}) => await dataSources.authAPI.login(credentials),
     refreshToken: async (_, {refresh}, {dataSources}) => await dataSources.authAPI.refreshToken(refresh),
-    updateUser: async (_, {userInput}, {dataSources}) => await dataSources.authAPI.updateUser(userInput)
+    updateUser: async (_, {update,id}, {dataSources}) => await dataSources.authAPI.updateUser(update, id)
   },
 }
 

@@ -28,7 +28,7 @@ class PetsAPI extends RESTDataSource {
   }
 
   async deletePet(username) {
-    return await this.delete(`/pets`, JSON.parse(JSON.stringify({username: username})));
+    return await this.delete(`/pets/`+username);
   }
 }
 

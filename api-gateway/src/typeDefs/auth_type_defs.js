@@ -5,7 +5,7 @@ const auth_type_defs = gql`
     access:String!
   }
 
-  input Access {
+  type Access {
     access:String!
   }
 
@@ -25,7 +25,6 @@ const auth_type_defs = gql`
   }
 
   type User {
-    id:Int!
     username:String!
     email:String!
     first_name:String!
@@ -41,8 +40,8 @@ const auth_type_defs = gql`
   type Mutation {
     createUser(signup:UserInput!):Tokens!
     login(credentials:Credentials!):Tokens!
-    refreshToken(refresh:Access!):Tokens!
-    updateUser(update:UserInput!):User!
+    refreshToken(refresh:String!):Access!
+    updateUser(update:UserInput!, id:Int!):User!
   }
 
 `;
