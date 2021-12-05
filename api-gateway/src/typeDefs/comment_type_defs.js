@@ -15,7 +15,7 @@ const comment_type_defs = gql`
   }
 
   extend type Mutation {
-    addComment(input: CommentInput!): Comment!
+    addComment(comment: CommentInput!): Comment!
   }
 `;
 

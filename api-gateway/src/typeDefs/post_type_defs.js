@@ -29,8 +29,8 @@ const post_type_defs = gql`
   }
 
   extend type Mutation {
-    createPostJSON(postInput: PostInput): Post
-    createPostImage(postWithImageInput: PostWithImageInput): Post
+    createPostJSON(post: PostInput): Post
+    createPostImage(post: PostWithImageInput): Post
   }
 
 `;

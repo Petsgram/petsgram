@@ -2,9 +2,9 @@ const {ApolloServer} = require('apollo-server');
 
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
-const AuthAPI = require('./datasources/auth_api');
-const PetsAPI = require('./datasources/pets_api');
-const PostAPI = require('./datasources/post_api');
+const AuthAPI = require('./dataSources/auth_api');
+const PetsAPI = require('./dataSources/pets_api');
+const PostAPI = require('./dataSources/post_api');
 const auth = require('./utils/auth');
 
 const server = new ApolloServer({
@@ -16,7 +16,7 @@ const server = new ApolloServer({
     postAPI: new PostAPI(),
   }),
   introspection: true,
-  playground: true
+  playground: true,
 });
 
 server.listen(process.env.PORT || 4000).then(({url}) => {

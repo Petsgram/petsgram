@@ -14,8 +14,8 @@ const like_type_defs = gql`
   }
 
   extend type Mutation {
-    addLike(input: LikeInput!): Like!
-    removeLike(id: LikeInput): Like!
+    addLike(like: LikeInput!): Like!
+    removeLike(like: LikeInput): Like!
   }
     
 `;

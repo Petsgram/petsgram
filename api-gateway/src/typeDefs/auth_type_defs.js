@@ -38,10 +38,10 @@ const auth_type_defs = gql`
   }
 
   type Mutation {
-    createUser(signup:UserInput!):Tokens!
+    createUser(user:UserInput!):Tokens!
     login(credentials:Credentials!):Tokens!
     refreshToken(refresh:String!):Access!
-    updateUser(update:UserInput!, id:Int!):User!
+    updateUser(user:UserInput!, id:Int!):User!
   }
 
 `;
