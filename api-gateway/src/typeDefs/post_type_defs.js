@@ -8,7 +8,12 @@ const post_type_defs = gql`
     date: String!
     comments: [Comment]
     likes: [Like]
-    image: String
+    image: Image
+  }
+  
+  type Image {
+    url: String!
+    id: String!
   }
 
   input PostInput {
@@ -29,8 +34,8 @@ const post_type_defs = gql`
   }
 
   extend type Mutation {
-    createPostJSON(postInput: PostInput): Post
-    createPostImage(postWithImageInput: PostWithImageInput): Post
+    createPostJSON(post: PostInput): Post
+    createPostImage(post: PostWithImageInput): Post
   }
 
 `;
