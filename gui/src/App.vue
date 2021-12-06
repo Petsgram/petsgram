@@ -1,11 +1,9 @@
 <template id="app">
-  <nav>
-    <router-link to="Login">Login</router-link>
-    <router-link to="Register">Register</router-link>
-  </nav>
   <router-view></router-view>
 </template>
 
 <style lang="scss">
-
+body {
+  background: linear-gradient(to bottom, #ABDBDD 0%, #f5f5f5 20%) no-repeat center center fixed;
+}
 </style>
