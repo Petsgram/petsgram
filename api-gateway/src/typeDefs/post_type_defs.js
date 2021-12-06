@@ -8,7 +8,12 @@ const post_type_defs = gql`
     date: String!
     comments: [Comment]
     likes: [Like]
-    image: String
+    image: Image
+  }
+  
+  type Image {
+    url: String!
+    id: String!
   }
 
   input PostInput {
