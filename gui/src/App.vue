@@ -4,6 +4,7 @@
 
 <style lang="scss">
 body {
-  background: linear-gradient(to bottom, #ABDBDD 0%, #f5f5f5 20%) no-repeat center center fixed;
+  background: linear-gradient(to bottom, #abdbdd 0%, #f5f5f5 20%) no-repeat
+    center center fixed;
 }
 </style>
