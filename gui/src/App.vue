@@ -1,4 +1,5 @@
 <template id="app">
+  <HeaderPetsgram />
   <router-view></router-view>
 </template>
 
@@ -8,3 +9,10 @@ body {
     center center fixed;
 }
 </style>
+<script>
+import HeaderPetsgram from "./components/HeaderPetsgram";
+
+export default {
+  components: { HeaderPetsgram },
+};
+</script>

@@ -1,17 +1,23 @@
 <template>
-  <h1>Register</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-    aspernatur at consectetur doloremque doloribus ea eaque esse fugit itaque
-    nam nobis pariatur praesentium quas reiciendis, sequi sunt ullam, voluptate
-    voluptatum.
-  </p>
+  <main>
+    <PictureCredentials />
+    <register-component />
+  </main>
 </template>
-
 <script>
+import RegisterComponent from "../components/RegisterComponent";
+import PictureCredentials from "../components/PictureCredentials";
+
 export default {
   name: "Register-View",
+  components: { PictureCredentials, RegisterComponent },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@import "../assets/css/credentials";
+
+#picture {
+  height: 70vh !important;
+}
+</style>

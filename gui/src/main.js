@@ -6,5 +6,6 @@ import store from "./store";
 // import { setContext } from "apollo-link-context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
+import "./assets/css/global.css";
 
 createApp(App).use(router).use(store).mount("#app");
