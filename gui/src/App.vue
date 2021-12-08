@@ -1,5 +1,4 @@
 <template id="app">
-  <HeaderPetsgram />
   <router-view />
 </template>
 
@@ -12,10 +11,7 @@ body {
 }
 </style>
 <script>
-import HeaderPetsgram from "./components/HeaderPetsgram";
-
 export default {
-  components: { HeaderPetsgram },
   created() {
     if (!localStorage.getItem("access_token")) {
       this.$router.push("/login");
