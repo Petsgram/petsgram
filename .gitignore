@@ -4,3 +4,5 @@ env
 .idea
 *.iml
 profile_pics/
+uploads/
+media/
