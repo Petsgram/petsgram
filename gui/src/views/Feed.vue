@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  first_name: "Feed-View",
+  name: "Feed-View",
   data() {
     return {
       posts: [],

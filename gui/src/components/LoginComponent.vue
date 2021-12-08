@@ -37,6 +37,7 @@
 
 <script>
 import gql from "graphql-tag";
+
 export default {
   first_name: "LoginComponent",
   data() {

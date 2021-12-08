@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss">
 @import "../assets/css/credentials";
+
 .login {
   width: 15px;
 }

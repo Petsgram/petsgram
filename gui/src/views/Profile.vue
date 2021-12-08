@@ -1,7 +1,9 @@
-<template></template>
+<template>
+  <h1>profileview</h1>
+</template>
 <script>
 export default {
-  first_name: "Profile-View",
+  name: "Profile-View",
 };
 </script>
 
