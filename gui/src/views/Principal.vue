@@ -2,21 +2,32 @@
   <!-- Start: Container -->
   <div class="container">
     <header>
-      <span class="iconify user" data-icon="carbon:user-avatar-filled-alt" style="color: white;"></span>
+      <span
+        class="iconify user"
+        data-icon="carbon:user-avatar-filled-alt"
+        style="color: white"
+      ></span>
     </header>
     <main>
       <!-- Start: Description -->
       <h1 class="title">Petsgram</h1>
-      <p class="description">La red social donde tus mascotas <br> son las protagonistas</p>
+      <p class="description">
+        La red social donde tus mascotas <br />
+        son las protagonistas
+      </p>
       <!-- End: Description -->
-      
+
       <h3 class="greet">Buenos dias {{}}!</h3>
 
       <!-- Start: Show off your pet -->
       <button class="boast">
         Presume a tu mascota...
         <div class="boast__icon">
-          <span class="iconify camera" data-icon="ant-design:camera-filled" style="color: white;"></span>
+          <span
+            class="iconify camera"
+            data-icon="ant-design:camera-filled"
+            style="color: white"
+          ></span>
           <p>subir</p>
         </div>
       </button>
@@ -26,13 +37,15 @@
       <div class="pet">
         <h2>Tus mascotas</h2>
         <div class="pet__container">
-          <div class="pet__container--item" v-for="item in variable" :key="item">
-            <img src="{{}}" alt="{{}}">
+          <div
+            class="pet__container--item"
+            v-for="item in variable"
+            :key="item"
+          >
+            <img src="{{}}" alt="{{}}" />
             <p>{{}}</p>
           </div>
-          <button class="pet__container--add">
-            Agregar otra mascota
-          </button>
+          <button class="pet__container--add">Agregar otra mascota</button>
         </div>
       </div>
       <!-- End: Information about your pets -->
@@ -43,8 +56,8 @@
 
 <script>
 export default {
-  name: "Principal"
-}
+  name: "Principal-View",
+};
 </script>
 
 <style scoped>
@@ -72,15 +85,15 @@ main {
 }
 
 .title {
-  color: #1D3557;
-  font-family: 'Averia Libre', cursive;
+  color: #1d3557;
+  font-family: "Averia Libre", cursive;
   font-size: 38px;
   font-weight: bold;
 }
 
 .description {
   color: #457b9d;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
   text-align: center;
@@ -88,7 +101,7 @@ main {
 
 .greet {
   color: #457b9d;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 500;
   margin: 50px 0;
@@ -101,7 +114,7 @@ main {
   border-radius: 3px;
   box-shadow: 0 20px 20px -1px #c4c4c488;
   display: flex;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
   height: 50px;
@@ -118,7 +131,7 @@ main {
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 8px;
   font-weight: 400;
   height: 100%;
@@ -134,7 +147,7 @@ main {
 
 h2 {
   color: #457b9d;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
   margin-bottom: 30px;
@@ -155,7 +168,7 @@ img {
 }
 
 .pet__container--item > p {
-  font-family: 'Averia Libre', cursive;
+  font-family: "Averia Libre", cursive;
   font-size: 11px;
   font-weight: 400;
   text-align: center;
@@ -167,7 +180,7 @@ img {
   background: none;
   color: #457b9d;
   display: flex;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
   height: 100px;

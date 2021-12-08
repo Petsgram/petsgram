@@ -1,12 +1,9 @@
 <template>
   <h1>feed</h1>
 </template>
-
 <script>
 export default {
-  name: "Feed-View",
-
-
+  first_name: "Feed-View",
   data() {
     return {
       posts: [],

@@ -4,7 +4,7 @@
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">
+      <a href="https://cli.vuejs.org" rel="noopener" target="_blank">
         vue-cli documentation </a
       >.
     </p>
@@ -13,24 +13,24 @@
       <li>
         <a
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
           rel="noopener"
+          target="_blank"
           >babel</a
         >
       </li>
       <li>
         <a
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
           rel="noopener"
+          target="_blank"
           >router</a
         >
       </li>
       <li>
         <a
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
           rel="noopener"
+          target="_blank"
           >eslint</a
         >
       </li>
@@ -38,55 +38,55 @@
     <h3>Essential Links</h3>
     <ul>
       <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
+        <a href="https://vuejs.org" rel="noopener" target="_blank">Core Docs</a>
       </li>
       <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
+        <a href="https://forum.vuejs.org" rel="noopener" target="_blank"
           >Forum</a
         >
       </li>
       <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
+        <a href="https://chat.vuejs.org" rel="noopener" target="_blank"
           >Community Chat</a
         >
       </li>
       <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
+        <a href="https://twitter.com/vuejs" rel="noopener" target="_blank"
           >Twitter</a
         >
       </li>
       <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
+        <a href="https://news.vuejs.org" rel="noopener" target="_blank">News</a>
       </li>
     </ul>
     <h3>Ecosystem</h3>
     <ul>
       <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
+        <a href="https://router.vuejs.org" rel="noopener" target="_blank"
           >vue-router</a
         >
       </li>
       <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
+        <a href="https://vuex.vuejs.org" rel="noopener" target="_blank">vuex</a>
       </li>
       <li>
         <a
           href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
           rel="noopener"
+          target="_blank"
           >vue-devtools</a
         >
       </li>
       <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
+        <a href="https://vue-loader.vuejs.org" rel="noopener" target="_blank"
           >vue-loader</a
         >
       </li>
       <li>
         <a
           href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
           rel="noopener"
+          target="_blank"
           >awesome-vue</a
         >
       </li>
@@ -96,7 +96,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  first_name: "HelloWorld",
   props: {
     msg: String,
   },
@@ -104,7 +104,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 h3 {
   margin: 40px 0 0;
 }
