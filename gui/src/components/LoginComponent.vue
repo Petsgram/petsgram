@@ -24,7 +24,11 @@
       </div>
       <div class="form-group">
         <button class="btn btnLogin" type="submit">Login</button>
-        <button class="btn btnRegister" v-on:click="pushToRegister">
+        <button
+          class="btn btnRegister"
+          type="button"
+          v-on:click="pushToRegister"
+        >
           Register
         </button>
       </div>

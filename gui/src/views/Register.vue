@@ -1,4 +1,5 @@
 <template>
+  <HeaderPetsgram />
   <main>
     <transition name="trans-pic" appear>
       <PictureCredentials />
@@ -11,12 +12,16 @@
 <script>
 import RegisterComponent from "../components/RegisterComponent";
 import PictureCredentials from "../components/PictureCredentials";
+import HeaderPetsgram from "@/components/HeaderPetsgram";
 
 export default {
   name: "Register-View",
-  components: { PictureCredentials, RegisterComponent },
-  created: function () {
+  components: { HeaderPetsgram, PictureCredentials, RegisterComponent },
+  created() {
     document.title = "Register - Petsgram";
+    if (localStorage.getItem("access_token")) {
+      this.$router.push("/");
+    }
   },
 };
 </script>

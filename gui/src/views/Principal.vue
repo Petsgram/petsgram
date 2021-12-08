@@ -17,7 +17,7 @@
       </p>
       <!-- End: Description -->
 
-      <h3 class="greet">Buenos dias {{}}!</h3>
+      <h3 class="greet">Buenos dias {{ this.user }}!</h3>
 
       <!-- Start: Show off your pet -->
       <button class="boast">
@@ -39,11 +39,11 @@
         <div class="pet__container">
           <div
             class="pet__container--item"
-            v-for="item in variable"
+            v-for="item in this.pets"
             :key="item"
           >
-            <img src="{{}}" alt="{{}}" />
-            <p>{{}}</p>
+            <img v-bind:src="defineSrc(item.username)" alt="{{item}}" />
+            <p>{{ item.username }}</p>
           </div>
           <button class="pet__container--add">Agregar otra mascota</button>
         </div>
@@ -55,8 +55,80 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+import jwt_decode from "jwt-decode";
+
 export default {
-  name: "Principal-View",
+  name: "PrincipalView",
+  data() {
+    return {
+      pets: [],
+      user: "",
+    };
+  },
+  methods: {
+    defineSrc(pet) {
+      return `https://petsgram-pets.herokuapp.com/pets/${pet}/profile-pic`;
+    },
+    getUserName: async function () {
+      const token = localStorage.getItem("access_token");
+      const decoded = jwt_decode(token);
+      let user = "";
+      await this.$apollo
+        .query({
+          query: gql`
+            query Query($id: Int!) {
+              getUser(id: $id) {
+                username
+              }
+            }
+          `,
+          variables: {
+            id: decoded.user_id,
+          },
+        })
+        .then((response) => {
+          user = response.data.getUser.username;
+          this.user = user;
+          return user;
+        })
+        .catch((error) => {
+          console.log(error);
+          return null;
+        });
+
+      return user;
+    },
+    getPets: async function () {
+      const id = await this.getUserName();
+      await this.$apollo
+        .query({
+          query: gql`
+            query Query($owner: String!) {
+              getPetsByOwner(owner: $owner) {
+                username
+                image
+              }
+            }
+          `,
+          variables: {
+            owner: id,
+          },
+        })
+        .then((response) => {
+          console.log("response");
+          console.log(response);
+          this.pets = response.data.getPetsByOwner;
+        })
+        .catch((error) => {
+          console.log(id);
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getPets();
+  },
 };
 </script>
 
@@ -69,6 +141,7 @@ export default {
 
 .container {
   height: 100vh;
+  min-width: 100vw;
 }
 
 header {
@@ -140,9 +213,10 @@ main {
 }
 
 .pet {
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {
@@ -155,9 +229,15 @@ h2 {
 
 .pet__container {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
-.pet__container--item {
+.pet__container--item,
+.pet__container--add {
   margin-right: 20px;
 }
 
