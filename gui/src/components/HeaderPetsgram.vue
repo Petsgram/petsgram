@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "HeaderPetsgram",
+  first_name: "HeaderPetsgram",
 };
 </script>
 

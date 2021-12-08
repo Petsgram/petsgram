@@ -2,7 +2,7 @@
 
 <script>
 export default {
-  name: "Principal-View",
+  first_name: "Principal-View",
 };
 </script>
 

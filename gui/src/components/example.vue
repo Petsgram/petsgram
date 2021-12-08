@@ -96,7 +96,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  first_name: "HelloWorld",
   props: {
     msg: String,
   },

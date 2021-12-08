@@ -1,7 +1,7 @@
 <template></template>
 <script>
 export default {
-  name: "Profile-View",
+  first_name: "Profile-View",
 };
 </script>
 
