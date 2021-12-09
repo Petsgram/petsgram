@@ -14,6 +14,7 @@
               name="photo"
               id="photo"
               v-on:change="onFileChange"
+              required
             />
           </div>
           <div class="container-field">
@@ -44,10 +45,16 @@
         <div class="container-group">
           <div class="container-field">
             <label for="type">Tipo</label>
-            <select name="type" id="type" v-model="pet.typePet">
+            <select
+              name="type"
+              id="type"
+              v-model="pet.type"
+              v-on:change="showEvent($event)"
+            >
+              >
               <option value="" disabled>Seleccione un tipo</option>
-              <option :key="type" v-for="type in types" :value="type.id">
-                {{ type }}
+              <option :key="t" v-for="t in this.types">
+                {{ t }}
               </option>
             </select>
           </div>
@@ -58,7 +65,13 @@
         </div>
         <!-- Botón para crear -->
         <div class="container-field-btn">
-          <button class="btn-primary" v-on:click="createPet">Agregar</button>
+          <button
+            id="btn-create-pet"
+            class="btn-primary"
+            v-on:click="createPet"
+          >
+            Agregar
+          </button>
         </div>
       </div>
     </div>
@@ -73,11 +86,11 @@ export default {
     return {
       pet: {
         image: null,
-        username: "",
-        name: "",
-        birthdate: "",
-        typePet: "DOG",
-        breed: "",
+        username: "username",
+        name: "nombre",
+        birthdate: "2010-01-01",
+        type: "CAT",
+        breed: "chiquito",
       },
       types: ["DOG", "CAT", "BIRD", "RABBIT", "OTHER"],
       breeds: [],
@@ -85,9 +98,21 @@ export default {
     };
   },
   methods: {
+    closeModal() {
+      this.$emit("close");
+    },
+    showEvent(event) {
+      console.log(event.target.value);
+      this.pet.type = event.target.value;
+      console.log(this.pet);
+    },
     onFileChange(e) {
-      console.log(e);
       this.pet.image = e.target.files[0];
+      if (this.pet.image != null) {
+        document
+          .getElementById("btn-create-pet")
+          .setAttribute("data-bs-dismiss", "modal");
+      }
     },
     createPet: function () {
       const formData = new FormData();
@@ -95,15 +120,16 @@ export default {
       formData.append("username", this.pet.username);
       formData.append("name", this.pet.name);
       formData.append("birthdate", this.pet.birthdate);
-      formData.append("type", this.pet.typePet);
+      formData.append("type", this.pet.type);
       formData.append("breed", this.pet.breed);
       formData.append("usernameOwner", this.$props.username);
       let a = formData.entries();
       for (let pair of a) {
         console.log(pair[0] + ": " + pair[1]);
       }
-      console.log(this.pet);
-      this.$emit("createPet", formData);
+      if (this.pet.image != null) {
+        this.$emit("createPet", formData);
+      } else alert("Debe seleccionar una foto");
     },
   },
 };

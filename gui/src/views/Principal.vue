@@ -1,7 +1,11 @@
 <template>
   <!-- Start: Container -->
-  <ModalComponent>
-    <ModalContentCreatePet @createPet="createPet" :username="this.user" />
+  <ModalComponent @close="close">
+    <ModalContentCreatePet
+      @close="close"
+      @createPet="createPet"
+      :username="this.user"
+    />
   </ModalComponent>
   <div class="container">
     <header>
@@ -69,7 +73,7 @@ import jwt_decode from "jwt-decode";
 import ModalComponent from "../components/ModalComponent";
 import ModalContentCreatePet from "@/components/ModalContentCreatePet";
 import { forgetCache } from "@apollo/client/cache/inmemory/reactiveVars";
-
+import { Modal } from "bootstrap";
 export default {
   name: "PrincipalView",
   components: {
@@ -83,6 +87,17 @@ export default {
     };
   },
   methods: {
+    close: async function () {
+      let myModal = new Modal(document.getElementById("modal"), {
+        keyboard: false,
+      });
+
+      myModal.hide();
+      // const modalsBackdrops = document.getElementsByClassName("modal-backdrop");
+      // for (let i = 0; i < modalsBackdrops.length; i++) {
+      //   document.body.removeChild(modalsBackdrops[i]);
+      // }
+    },
     createPet: async function (pet) {
       console.log("multipart", pet);
       await fetch("https://petsgram-pets.herokuapp.com/pets", {
