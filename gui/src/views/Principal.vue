@@ -1,5 +1,12 @@
 <template>
   <!-- Start: Container -->
+  <ModalComponent @close="close">
+    <ModalContentCreatePet
+      @close="close"
+      @createPet="createPet"
+      :username="this.user"
+    />
+  </ModalComponent>
   <div class="container">
     <header>
       <span
@@ -17,7 +24,7 @@
       </p>
       <!-- End: Description -->
 
-      <h3 class="greet">Buenos dias {{}}!</h3>
+      <h3 class="greet">Buenos dias {{ this.user }}!</h3>
 
       <!-- Start: Show off your pet -->
       <button class="boast">
@@ -39,13 +46,19 @@
         <div class="pet__container">
           <div
             class="pet__container--item"
-            v-for="item in variable"
+            v-for="item in this.pets"
             :key="item"
           >
-            <img src="{{}}" alt="{{}}" />
-            <p>{{}}</p>
+            <img :src="item.image" alt="{{item}}" />
+            <p>{{ item.username }}</p>
           </div>
-          <button class="pet__container--add">Agregar otra mascota</button>
+          <button
+            class="btn pet__container--add"
+            data-bs-toggle="modal"
+            data-bs-target="#modal"
+          >
+            Agregar otra mascota
+          </button>
         </div>
       </div>
       <!-- End: Information about your pets -->
@@ -55,8 +68,193 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+import jwt_decode from "jwt-decode";
+import ModalComponent from "../components/ModalComponent";
+import ModalContentCreatePet from "@/components/ModalContentCreatePet";
+import { forgetCache } from "@apollo/client/cache/inmemory/reactiveVars";
+import { Modal } from "bootstrap";
 export default {
-  name: "Principal-View",
+  name: "PrincipalView",
+  components: {
+    ModalContentCreatePet,
+    ModalComponent,
+  },
+  data() {
+    return {
+      pets: [],
+      user: "",
+    };
+  },
+  methods: {
+    close: async function () {
+      let myModal = new Modal(document.getElementById("modal"), {
+        keyboard: false,
+      });
+
+      myModal.hide();
+      // const modalsBackdrops = document.getElementsByClassName("modal-backdrop");
+      // for (let i = 0; i < modalsBackdrops.length; i++) {
+      //   document.body.removeChild(modalsBackdrops[i]);
+      // }
+    },
+    createPet: async function (pet) {
+      console.log("multipart", pet);
+      await fetch("https://petsgram-pets.herokuapp.com/pets", {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "*/*",
+        },
+        method: "POST",
+        body: pet,
+      })
+        .then((res) => {
+          console.log(res);
+          this.getPets().then(async () => {
+            await this.setImages();
+          });
+        })
+        .catch((err) => {
+          this.getPets().then(async () => {
+            await this.setImages();
+          });
+          alert("Error al subir la imagen");
+          console.log(err);
+        });
+    },
+    chooseRandomPet() {
+      let num = Math.floor(Math.random() * (20 - 2) + 2);
+      let root = require.context(
+        "@/assets/images/collection_pets/",
+        false,
+        /\.(png|jpe?g|svg)$/
+      );
+      return root("./img (" + num + ").jpg");
+      // return `../assets/images/collection_pets/img (${num}).jpg`;
+    },
+    defineSrc: async function (pet) {
+      // return `https://petsgram-pets.herokuapp.com/pets/${pet}/profile-pic`;
+      // eslint-disable-next-line no-unreachable
+      return (
+        this.$apollo
+          .query({
+            query: gql`
+              query ($pet: String!) {
+                getPetPicture(username: $pet)
+              }
+            `,
+            variables: {
+              pet,
+            },
+          })
+          // eslint-disable-next-line no-unused-vars
+          .then((res) => {
+            console.log(
+              `https://petsgram-pets.herokuapp.com/pets/${pet}/profile-pic`
+            );
+            return `https://petsgram-pets.herokuapp.com/pets/${pet}/profile-pic`;
+          })
+          // eslint-disable-next-line no-unused-vars
+          .catch((error) => {
+            console.log(this.chooseRandomPet());
+            return this.chooseRandomPet();
+          })
+      );
+    },
+    getUserName: async function () {
+      const token = localStorage.getItem("access_token");
+      const decoded = jwt_decode(token);
+      let user = "";
+      await this.$apollo
+        .query({
+          query: gql`
+            query Query($id: Int!) {
+              getUser(id: $id) {
+                username
+              }
+            }
+          `,
+          variables: {
+            id: decoded.user_id,
+          },
+        })
+        .then((response) => {
+          user = response.data.getUser.username;
+          this.user = user;
+          return user;
+        })
+        .catch((error) => {
+          console.log(error);
+          return null;
+        });
+
+      return user;
+    },
+    getPets: async function () {
+      const id = await this.getUserName();
+      forgetCache({
+        id: "getPetsByOwner",
+      });
+      await this.$apollo
+        .query({
+          query: gql`
+            query Query($owner: String!) {
+              getPetsByOwner(owner: $owner) {
+                username
+                image
+              }
+            }
+          `,
+          variables: {
+            owner: id,
+          },
+          fetchPolicy: "no-cache",
+        })
+        .then((response) => {
+          console.log("response");
+          console.log(response);
+          this.pets = response.data.getPetsByOwner;
+          let pets = [];
+          const requireContext = require.context(
+            "@/assets/images/collection_pets/",
+            false,
+            /\.(png|jpe?g|svg|gif)$/
+          );
+          for (const pet in this.pets) {
+            const newPet = {
+              username: this.pets[pet].username,
+              image: requireContext("./" + "img (0).gif"),
+            };
+            pets.push(newPet);
+          }
+          this.pets = pets;
+          return this.pets;
+        })
+        .catch((error) => {
+          console.log(id);
+          console.error(error);
+        });
+    },
+    setImages: async function () {
+      console.log("created");
+      let newPets = [];
+      for (let pet of this.pets) {
+        console.log("pet -> ", pet);
+        const newPet = {
+          username: pet.username,
+          image: await this.defineSrc(pet.username),
+        };
+        newPets.push(newPet);
+      }
+      this.pets = newPets;
+      console.log("newPets -> ", this.pets);
+    },
+  },
+  created() {
+    this.getPets().then(async () => {
+      await this.setImages();
+    });
+  },
 };
 </script>
 
@@ -69,6 +267,7 @@ export default {
 
 .container {
   height: 100vh;
+  min-width: 100vw;
 }
 
 header {
@@ -140,9 +339,10 @@ main {
 }
 
 .pet {
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {
@@ -155,10 +355,17 @@ h2 {
 
 .pet__container {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
-.pet__container--item {
+.pet__container--item,
+.pet__container--add {
   margin-right: 20px;
+  cursor: pointer;
 }
 
 img {

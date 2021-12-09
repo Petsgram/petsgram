@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  first_name: "PictureCredentials",
+  name: "PictureCredentials",
 };
 </script>
 

@@ -46,15 +46,13 @@ public class PetController {
      * @throws IOException - if the image is not valid
      */
     @PostMapping("/pets")
-    Pet newPet(
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("username") String username,
-            @RequestParam("name") String name,
-            @RequestParam("birthdate") String birthdate,
-            @RequestParam("type") PetType type,
-            @RequestParam("breed") String breed,
-            @RequestParam("usernameOwner") String usernameOwner
-    ) throws IOException {
+    @CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    Pet newPet(@RequestParam("image") MultipartFile image, @RequestParam("username") String username,
+               @RequestParam("name") String name, @RequestParam("birthdate") String birthdate,
+               @RequestParam("type") PetType type, @RequestParam("breed") String breed,
+               @RequestParam("usernameOwner") String usernameOwner) throws IOException {
+        System.out.println("Entro a pet: " + image.getContentType());
+        System.out.println(image);
         String filePath = getImagePath(image);
         Pet pet = new Pet(username, name, type, birthdate, breed, usernameOwner, filePath);
         Pet savedPet = petRepository.save(pet);
