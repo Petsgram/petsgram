@@ -16,6 +16,11 @@ const routes = [
     name: "Register",
     component: () => import("../views/Register.vue"),
   },
+  {
+    path: "/modal",
+    name: "Modal",
+    component: () => import("../components/ModalContentCreatePet"),
+  },
 ];
 
 const router = createRouter({

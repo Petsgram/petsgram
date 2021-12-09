@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "apollo-link-context";
 import { createApolloProvider } from "@vue/apollo-option";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +11,7 @@ import "./assets/css/global.css";
 //server
 const httpLink = createHttpLink({
   uri: "https://petsgram-apigt.herokuapp.com/",
+  // uri: "http://localhost:4000/",
 });
 
 //creacion del contexto

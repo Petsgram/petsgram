@@ -4,6 +4,7 @@ node_modules
 
 .graphqlconfig
 schema.graphql
+package-lock.json
 
 # local env files
 .env.local
