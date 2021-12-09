@@ -68,6 +68,7 @@ import gql from "graphql-tag";
 import jwt_decode from "jwt-decode";
 import ModalComponent from "../components/ModalComponent";
 import ModalContentCreatePet from "@/components/ModalContentCreatePet";
+import { forgetCache } from "@apollo/client/cache/inmemory/reactiveVars";
 
 export default {
   name: "PrincipalView",
@@ -176,6 +177,9 @@ export default {
     },
     getPets: async function () {
       const id = await this.getUserName();
+      forgetCache({
+        id: "getPetsByOwner",
+      });
       await this.$apollo
         .query({
           query: gql`
@@ -189,6 +193,7 @@ export default {
           variables: {
             owner: id,
           },
+          fetchPolicy: "no-cache",
         })
         .then((response) => {
           console.log("response");
