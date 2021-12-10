@@ -251,9 +251,9 @@ nav {
 }
 .iconos {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
+
 .home {
   padding: 0 0.5rem;
   cursor: pointer;

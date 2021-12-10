@@ -105,7 +105,7 @@ export default {
       }, 10);
     },
     openProfile() {
-      this.$router.push("/profile");
+      this.$router.push("/feed");
     },
     close: async function () {
       let myModal = new Modal(document.getElementById("modal"), {
