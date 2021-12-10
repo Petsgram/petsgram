@@ -26,6 +26,11 @@ const routes = [
     name: "NewPost",
     component: () => import("../views/NewPost.vue"),
   },
+  {
+    path: "/feed",
+    name: "Feed",
+    component: () => import("../views/Feed.vue"),
+  },
 ];
 
 const router = createRouter({

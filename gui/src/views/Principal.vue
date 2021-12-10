@@ -7,6 +7,9 @@
       :username="this.user"
     />
   </ModalComponent>
+  <ModalComponent modal="modal-prevent">
+    <ModalContentNotImplemented />
+  </ModalComponent>
   <div class="container">
     <header>
       <div class="exit" v-on:click="closeSession" title="Cerrar Sesión">
@@ -26,7 +29,11 @@
       <h3 class="greet">Buenos dias {{ this.user }}!</h3>
 
       <!-- Start: Show off your pet -->
-      <button class="boast">
+      <button
+        class="boast"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-prevent"
+      >
         Presume a tu mascota...
         <div class="boast__icon">
           <span
@@ -74,9 +81,13 @@ import ModalComponent from "../components/ModalComponent";
 import ModalContentCreatePet from "@/components/ModalContentCreatePet";
 import { forgetCache } from "@apollo/client/cache/inmemory/reactiveVars";
 import { Modal } from "bootstrap";
+import ModalContentNotImplemented from "@/components/ModalContentNotImplemented";
+
 export default {
   name: "PrincipalView",
   components: {
+    // eslint-disable-next-line vue/no-unused-components
+    ModalContentNotImplemented,
     ModalContentCreatePet,
     ModalComponent,
   },
@@ -94,7 +105,7 @@ export default {
       }, 10);
     },
     openProfile() {
-      this.$router.push("/profile");
+      this.$router.push("/feed");
     },
     close: async function () {
       let myModal = new Modal(document.getElementById("modal"), {
@@ -375,6 +386,7 @@ h2 {
 .pet__container--add {
   margin-right: 20px;
   cursor: pointer;
+
   &:hover {
     transform: scale(1.1);
   }
