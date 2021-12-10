@@ -202,10 +202,12 @@ main {
   border-color: black;
   border-style: solid none none solid;
   min-height: 128px;
+  border-width: 2px;
 }
 
 .content-comments {
   height: 50%;
+  border-width: 2px;
   padding: 0.5rem;
   border-style: solid none none solid;
   border-color: black;
@@ -249,8 +251,9 @@ main {
 
 .file {
   font-size: 20px;
+  padding: 0.3rem;
   border-radius: 10px;
-  border: solid 3px #000000;
+  border: solid 2px #000000;
   background: transparent;
   justify-content: center;
 }
@@ -263,6 +266,7 @@ main {
   width: 60%;
   height: 100%;
   border-style: solid none none none;
+  border-width: 2px;
 }
 
 .content-post {
