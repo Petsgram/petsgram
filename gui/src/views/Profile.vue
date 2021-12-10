@@ -1,4 +1,21 @@
 <template>
+  <ModalComponent modal="modal-prevent">
+    <ModalContentNotImplemented />
+  </ModalComponent>
+  <ModalComponent modal="modal-test">
+    <div class="container">
+      <div class="text-center pb-3 text-capitalize fw-bolder f">
+        Pantalla de vista Previa de funcionalidad
+      </div>
+      <button
+        class="btn btn-danger p-2"
+        data-bs-target="#modal-test"
+        data-bs-toggle="modal"
+      >
+        Cerrar
+      </button>
+    </div>
+  </ModalComponent>
   <section class="container-sm">
     <nav class="nav">
       <div class="nav-cont">
@@ -9,8 +26,16 @@
         </div>
         <div class="iconos">
           <i v-on:click="this.$router.push('/')" class="home fas fa-home"></i>
-          <i class="plus far fa-plus-square"></i>
-          <i class="heart fas fa-heart"></i>
+          <i
+            data-bs-toggle="modal"
+            data-bs-target="#modal-prevent"
+            class="plus far fa-plus-square"
+          ></i>
+          <i
+            data-bs-toggle="modal"
+            data-bs-target="#modal-prevent"
+            class="heart fas fa-heart"
+          ></i>
           <img
             class="small-logo"
             src="https://i.pinimg.com/originals/19/45/94/194594e00cc5c5828004c61519e184b9.jpg"
@@ -29,8 +54,14 @@
         <div class="contenedor-cabezera">
           <div class="cabezera1">
             <h1>olliethegoodest</h1>
-            <button>Editar perfil</button>
-            <i class="settings fas fa-cog"></i>
+            <button data-bs-toggle="modal" data-bs-target="#modal-prevent">
+              Editar perfil
+            </button>
+            <i
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
+              class="settings fas fa-cog"
+            ></i>
           </div>
           <div class="cabezera2">
             <p class="publicaciones"><b>6</b> publicaciones</p>
@@ -71,36 +102,48 @@
         <div class="images mainCont__grid">
           <div class="">
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://www.dogmal.com/wp-content/uploads/2017/02/Sheepadoodle-930x600.jpg"
               alt=""
             />
           </div>
           <div>
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://i.pinimg.com/474x/14/87/32/1487321f9cb4166f66db77bf64d7baa9.jpg"
               alt=""
             />
           </div>
           <div>
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://gfp-2a3tnpzj.stackpathdns.com/wp-content/uploads/2019/10/Duke4-600x600.jpg"
               alt=""
             />
           </div>
           <div>
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://www.feathersandfleece.com/wp-content/uploads/2019/07/breeding-left.jpg"
               alt=""
             />
           </div>
           <div>
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://texasdoodlesforsale.com/wp-content/uploads/elementor/thumbs/mini_sheepadoodle_puppy-p5o729jha7c3dxx2xyuqv0c303bx2clpd00wc453bs.jpg"
               alt=""
             />
           </div>
           <div>
             <img
+              data-bs-toggle="modal"
+              data-bs-target="#modal-prevent"
               src="https://images.agreatertown.com/image3604528.jpg"
               alt=""
             />
@@ -111,8 +154,16 @@
   </section>
 </template>
 <script>
+import ModalContentNotImplemented from "@/components/ModalContentNotImplemented";
+import ModalComponent from "@/components/ModalComponent";
+import { Modal } from "bootstrap";
 export default {
   name: "Profile-View",
+  components: { ModalComponent, ModalContentNotImplemented },
+  mounted() {
+    let modalAdvice = new Modal(document.getElementById("modal-test"));
+    modalAdvice.show();
+  },
 };
 </script>
 

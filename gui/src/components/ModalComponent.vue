@@ -2,7 +2,7 @@
   <!-- Modal -->
   <div
     class="modal fade"
-    id="modal"
+    :id="$props.modal"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
@@ -37,6 +37,10 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+    modal: {
+      type: String,
+      default: "modal",
     },
   },
   methods: {

@@ -1,4 +1,7 @@
 <template>
+  <ModalComponent modal="modal-prevent">
+    <ModalContentNotImplemented />
+  </ModalComponent>
   <HeaderPetsgram />
   <main>
     <transition name="trans" appear>
@@ -14,10 +17,18 @@
 import LoginComponent from "../components/LoginComponent";
 import PictureCredentials from "../components/PictureCredentials";
 import HeaderPetsgram from "@/components/HeaderPetsgram";
+import ModalComponent from "@/components/ModalComponent";
+import ModalContentNotImplemented from "@/components/ModalContentNotImplemented";
 
 export default {
   name: "Login-View",
-  components: { PictureCredentials, LoginComponent, HeaderPetsgram },
+  components: {
+    ModalContentNotImplemented,
+    ModalComponent,
+    PictureCredentials,
+    LoginComponent,
+    HeaderPetsgram,
+  },
   created() {
     document.title = "Login - Petsgram";
     if (localStorage.getItem("access_token")) {
