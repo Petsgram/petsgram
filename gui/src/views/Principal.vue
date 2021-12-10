@@ -9,11 +9,10 @@
   </ModalComponent>
   <div class="container">
     <header>
-      <span
-        class="iconify user"
-        data-icon="carbon:user-avatar-filled-alt"
-        style="color: white"
-      ></span>
+      <div class="exit" v-on:click="closeSession" title="Cerrar Sesión">
+        <span class="iconify user" data-icon="mdi:exit-run"></span>
+        Cerrar Sesión
+      </div>
     </header>
     <main>
       <!-- Start: Description -->
@@ -48,6 +47,7 @@
             class="pet__container--item"
             v-for="item in this.pets"
             :key="item"
+            v-on:click="openProfile"
           >
             <img :src="item.image" alt="{{item}}" />
             <p>{{ item.username }}</p>
@@ -87,6 +87,15 @@ export default {
     };
   },
   methods: {
+    closeSession() {
+      localStorage.clear();
+      setTimeout(() => {
+        this.$router.push("/login");
+      }, 10);
+    },
+    openProfile() {
+      this.$router.push("/profile");
+    },
     close: async function () {
       let myModal = new Modal(document.getElementById("modal"), {
         keyboard: false,
@@ -258,7 +267,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
   margin: 0;
@@ -366,12 +375,16 @@ h2 {
 .pet__container--add {
   margin-right: 20px;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 img {
   border-radius: 25px;
   height: 100px;
   width: 100px;
+  object-fit: cover;
 }
 
 .pet__container--item > p {
@@ -403,5 +416,22 @@ img {
 .user {
   height: 35px;
   width: 100px;
+  color: white;
+}
+
+.user:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.exit {
+  padding: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  color: white;
+  text-shadow: 1px 0px 5px #1d3557;
 }
 </style>

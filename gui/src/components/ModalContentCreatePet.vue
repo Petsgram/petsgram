@@ -86,11 +86,11 @@ export default {
     return {
       pet: {
         image: null,
-        username: "username",
-        name: "nombre",
-        birthdate: "2010-01-01",
-        type: "CAT",
-        breed: "chiquito",
+        username: "",
+        name: "",
+        birthdate: "",
+        type: "",
+        breed: "",
       },
       types: ["DOG", "CAT", "BIRD", "RABBIT", "OTHER"],
       breeds: [],
