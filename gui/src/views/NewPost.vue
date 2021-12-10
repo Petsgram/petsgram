@@ -25,13 +25,9 @@
   </div>
   <main>
     <div class="post">
-      <div class="arrow-post">
-        <i class="arrow fas fa-arrow-left"></i>
-      </div>
+      <i class="arrow fas fa-arrow-left"></i>
       <p class="new-post"><b>Crea una nueva publicación</b></p>
-      <div class="share-post">
-        <p class="share"><b>Compartir</b></p>
-      </div>
+      <p class="share"><b>Compartir</b></p>
     </div>
     <div class="content-post">
       <div class="content-image">
@@ -237,6 +233,8 @@ main {
 
 .new-post {
   font-size: 1.2rem;
+  width: 80%;
+  text-align: center;
 }
 
 .share {
@@ -289,17 +287,6 @@ main {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.arrow-post {
-  width: 20%;
-}
-
-.share-post {
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .profile-post {
