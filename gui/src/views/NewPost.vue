@@ -226,9 +226,10 @@ main {
   display: flex;
   flex-direction: horizontal;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   justify-content: center;
-  padding: 2rem;
+  padding: 0 2rem 0 2rem;
 }
 
 .new-post {
@@ -306,7 +307,7 @@ main {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
+  outline: none;
   width: 100%;
 }
 
