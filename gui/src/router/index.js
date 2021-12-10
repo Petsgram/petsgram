@@ -17,9 +17,14 @@ const routes = [
     component: () => import("../views/Register.vue"),
   },
   {
-    path: "/modal",
-    name: "Modal",
-    component: () => import("../components/ModalContentCreatePet"),
+    path: "/profile",
+    name: "Profile",
+    component: () => import("../views/Profile.vue"),
+  },
+  {
+    path: "/new-post",
+    name: "NewPost",
+    component: () => import("../views/NewPost.vue"),
   },
 ];
 
